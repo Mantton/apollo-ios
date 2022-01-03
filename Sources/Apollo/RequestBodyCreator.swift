@@ -27,7 +27,7 @@ extension RequestBodyCreator {
                                                        sendQueryDocument: Bool,
                                                        autoPersistQuery: Bool) -> GraphQLMap {
     var body: GraphQLMap = [
-      "variables": operation.variables,
+      "variables": operation.variables?.compactMapValues {$0}, // Remove nil values
       "operationName": operation.operationName,
     ]
 
